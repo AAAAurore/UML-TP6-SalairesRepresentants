@@ -82,6 +82,137 @@ public class TestRepresentant {
 		}
 
 	}
+
+	@Test
+	public void testMoisPlusImpossible() {
+		
+		try {
+			// On enregistre un mois inexistant, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.enregistrerCA(15, 10000f);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un mois inexistant doit générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}
+
+	@Test
+	public void testMoisMoinsImpossible() {
+		
+		try {
+			// On enregistre un mois inexistant, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.enregistrerCA(-5, 10000f);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un mois inexistant doit générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}
+
+	@Test
+	public void testCANegatifMoinsPlusImpossible() {
+		
+		try {
+			// On enregistre un mois inexistant et un CA négatif, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.enregistrerCA(15, -10000f);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un moins inexistant et un CA négatif doivent générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}
+
+	@Test
+	public void testCANegatifMoinsMoinsImpossible() {
+		
+		try {
+			// On enregistre un mois inexistant et un CA négatif, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.enregistrerCA(-5, -10000f);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un moins inexistant et un CA négatif doivent générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}
+
+	@Test
+	public void testMoisPlusSalaireMensuel() {
+		
+		try {
+			// On enregistre un mois inexistant, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.salaireMensuel(15, 50);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un mois inexistant doit générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}@Test
+	public void testMoisMoinsSalaireMensuel() {
+		
+		try {
+			// On enregistre un mois inexistant, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.salaireMensuel(-5, 50);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un mois inexistant doit générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}
+
+	@Test
+	public void testPourcentageSalaireMensuel() {
+		
+		try {
+			// On enregistre un pourcentage impossible, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.salaireMensuel(0, 123);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un pourcentage impossible doit générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}
+
+	@Test
+	public void testMoisPlusPourcentageSalaireMensuel() {
+		
+		try {
+			// On enregistre un mois inexistant et un pourcentage impossible, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.salaireMensuel(15, 123);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un mois inexistant et un pourcentage impossible doivent générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}@Test
+	public void testMoisMoinsPourcentageSalaireMensuel() {
+		
+		try {
+			// On enregistre un mois inexistant et un pourcentage impossible, que doit-il se passer ?
+			// On s'attend à recevoir une exception
+			r.salaireMensuel(-5, 123);
+			// Si on arrive ici, c'est une erreur, le test doit échouer
+			fail("Un mois inexistant et un pourcentage impossible doivent générer une exception"); // Forcer l'échec du test			
+		} catch (IllegalArgumentException e) {
+			// Si on arrive ici, c'est normal, c'est le comportement attendu
+		}
+
+	}
 	
 	
 }

@@ -1,5 +1,10 @@
 package representation;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.lang.model.util.ElementScanner14;
+
 public class Representant {
 
 	private final int numero;
@@ -7,11 +12,14 @@ public class Representant {
 	private final String prenom;
 	private String adresse;
 	private float salaireFixe;
+	private ZoneGeographique secteur;
+	private final Map<Integer, Float> lCAEnregistree = new HashMap<Integer, Float>();
 
 	public Representant(int numero, String nom, String prenom, ZoneGeographique secteur) {
 		this.numero = numero;
 		this.nom = nom;
 		this.prenom = prenom;
+		this.secteur = secteur;
 	}
 
 	public int getNumero() {
@@ -43,14 +51,18 @@ public class Representant {
 	}
 
 	public ZoneGeographique getSecteur() {
-		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		return secteur;
 	}
 
 	public void setSecteur(ZoneGeographique secteur) {
-		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		this.secteur = secteur;
 	}
+
+	public Map<Integer, Float> getLCAEnregistree() {
+		return lCAEnregistree;
+	}
+
+
 
 	/**
 	 * Enregistre le CA de ce représentant pour un mois donné. 
@@ -65,8 +77,8 @@ public class Representant {
 		if (montant < 0) {
 			throw new IllegalArgumentException("Le montant doit être positif ou null");
 		}
-		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		
+		lCAEnregistree.put(mois, montant);
 	}
 
 	/**
@@ -76,8 +88,22 @@ public class Representant {
 	 * @return le salaire pour ce mois, tenant compte du salaire fixe, de l'indemnité repas, et du pourcentage sur CA
 	 */
 	public float salaireMensuel(int mois, float pourcentage) {
-		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		if (mois < 0 || mois > 11) {
+			throw new IllegalArgumentException("Le mois doit être compris entre 0 et 11");
+		}
+		if (pourcentage < 0 || pourcentage > 100) {
+			throw new IllegalArgumentException("Le pourcentage doit être entre 0 et 100");
+		}
+		float CAPourcentage;
+		if(getLCAEnregistree().containsKey(mois))
+		{
+			CAPourcentage = lCAEnregistree.get(mois) * pourcentage;
+		}
+		else
+		{
+			CAPourcentage = 0;
+		}
+		return salaireFixe + secteur.getIndemniteRepas() + CAPourcentage;
 	}
 
 	@Override
